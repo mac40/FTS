@@ -12,7 +12,7 @@ class Tickers:
         if os.path.exists('./data/data.pkl'):
             tickers_list = deserialize('./data/data.pkl')
             for ticker in tickers_list:
-                self.add(ticker)
+                self.add(ticker, silent=True)
 
     def __str__(self):
         t = 'Tickers:\n'
@@ -20,11 +20,12 @@ class Tickers:
             t = t + '\t- ' + ticker + '\n'
         return t
 
-    def add(self, ticker):
+    def add(self, ticker, silent=False):
         if ticker in self.tickers:
             print(f"{ticker} already in Tickers list")
         else:
-            print(f"Adding {ticker} to the Tickers...")
+            if not silent:
+                print(f"Adding {ticker} to the Tickers...")
             self.tickers[ticker] = yf.Ticker(ticker)
             serialize(self.tickers)
 
