@@ -17,7 +17,7 @@ def main():
             elif command[0] == 'remove':
                 tickers.drop(command[1])
             elif command[0] == 'plot':
-                dv.plot_ticker(tickers.get(command[1]))
+                dv.plot_history(tickers.get(command[1]))
             elif command[0] == 'acf':
                 dv.plot_acf(tickers.get(command[1]))
             elif command[0] == 'list':

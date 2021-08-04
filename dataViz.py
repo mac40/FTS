@@ -6,7 +6,7 @@ import seaborn as sns
 from pandas.plotting import autocorrelation_plot
 
 
-def plot_ticker(ticker, period='1y'):
+def plot_history(ticker, period='1y'):
     '''
     plot the history of the selected ticker in a given period of time
     '''
@@ -16,10 +16,10 @@ def plot_ticker(ticker, period='1y'):
         y="Close",
         size="Volume"
     )
-    plt.show()
+    plt.savefig(f"Images/{ticker.info['symbol']}_history.png")
 
 
-def plot_acf(ticker, period='1mo'):
+def plot_acf(ticker, period='1y'):
     '''
     The ACF measures the linear predictability of the series at time t, say xt,
     using only the value xs.
@@ -33,4 +33,4 @@ def plot_acf(ticker, period='1mo'):
     '''
     data = ticker.history(period=period)
     autocorrelation_plot(data['Close'])
-    plt.show()
+    plt.savefig(f"Images/{ticker.info['symbol']}_acf.png")
