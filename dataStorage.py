@@ -9,8 +9,8 @@ import os
 class Tickers:
     def __init__(self):
         self.tickers = {}
-        if os.path.exists('./data/data.pkl'):
-            tickers_list = deserialize('./data/data.pkl')
+        if os.path.exists('./Data/data.pkl'):
+            tickers_list = deserialize('./Data/data.pkl')
             for ticker in tickers_list:
                 self.add(ticker, silent=True)
 
@@ -37,7 +37,7 @@ class Tickers:
 
 
 def serialize(data):
-    data_path = './data/data.pkl'
+    data_path = './Data/data.pkl'
     with open(data_path, 'wb+') as storage:
         pickle.dump(list(data.keys()), storage)
 
