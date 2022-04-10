@@ -5,6 +5,10 @@ import sys
 
 import dataStorage as ds
 import dataViz as dv
+from logger import Logger, Level
+
+# Setup Logger
+log = Logger(__name__)
 
 
 def main():
@@ -28,7 +32,9 @@ def main():
                 dv.plot_acf(tickers.get(command[1]))
             elif command[0] == 'list':
                 print(tickers)
-            elif command[0] == 'stop':
+            elif command[0] == 'show':
+                dv.show_plot(command[1], command[2])
+            elif command[0] in ['stop', 'exit', 'quit']:
                 print('Program Stopped')
                 sys.exit()
             else:

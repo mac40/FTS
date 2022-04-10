@@ -4,12 +4,16 @@ Data Collection Module for the time series analysis project
 import yfinance as yf
 import pickle
 import os
+from logger import Logger, Level
+
+log = Logger(__name__)
 
 
 class Tickers:
     def __init__(self):
         self.tickers = {}
         if os.path.exists('./Data/data.pkl'):
+            log.message(Level.INFO, "Importing tickers")
             tickers_list = deserialize('./Data/data.pkl')
             for ticker in tickers_list:
                 self.add(ticker, silent=True)
@@ -22,14 +26,15 @@ class Tickers:
 
     def add(self, ticker, silent=False):
         if ticker in self.tickers:
-            print(f"{ticker} already in Tickers list")
+            log.message(Level.WARNING, f"{ticker} already in Tickers list")
         else:
             if not silent:
-                print(f"Adding {ticker} to the Tickers...")
+                log.message(Level.INFO, f"Adding {ticker} to the Tickers...")
             self.tickers[ticker] = yf.Ticker(ticker)
             serialize(self.tickers)
 
     def drop(self, ticker):
+        log.message(Level.INFO, f"Dropping {ticker}")
         self.tickers.pop(ticker)
 
     def get(self, ticker):
