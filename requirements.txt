@@ -1,0 +1,5 @@
+matplotlib
+pandas
+pickle-mixin
+yfinance
+seaborn

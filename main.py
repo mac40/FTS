@@ -8,7 +8,13 @@ import dataViz as dv
 
 
 def main():
+    '''
+    main method for FTS project
+    '''
+    # Import Data
     tickers = ds.Tickers()
+
+    # Start Listening to console commands
     while True:
         try:
             command = input("input a command: ").split(' ')
